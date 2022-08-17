@@ -3,8 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import './assets/styles/styles.scss';
 import Layout from './layouts';
 import Home from './pages/Home';
-import Second from './pages/Second';
-import Third from './pages/Third';
 
 import {
   getDefaultWallets,
