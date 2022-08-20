@@ -2,13 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useAccount } from "wagmi";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
-
-import img1 from "../assets/img/1.jpg";
-import img2 from "../assets/img/2.jpg";
-import img3 from "../assets/img/3.jpg";
-import img4 from "../assets/img/4.jpg";
-import img5 from "../assets/img/5.jpg";
-import img6 from "../assets/img/6.jpg";
+import { getLithoContract } from "../utils/contractFunctions";
+import { notify } from "../utils/notifyFunctions";
 
 const responsive = {
   0: { items: 1 },
@@ -22,7 +17,48 @@ export default function Home({ setPage }) {
 
   const { address, isConnected } = useAccount();
 
-  const nftData = [img1, img2, img3, img4, img5, img6];
+  const [nftData, setNFTData] = useState([]);
+
+  const getNftData = async () => {
+    const contract = await getLithoContract(isConnected);
+    console.log(contract);
+    const mintable = await contract.methods.getMintables().call();
+    const baseUri = await contract.methods.BASE_URI().call();
+    let _nftData = []
+    for (let i of mintable) {
+      const nft = `${baseUri}${i}.json`;
+      const response = await fetch(nft);
+      const json = await response.json();
+      _nftData.push(json.image);
+    }
+    setNFTData(_nftData);
+  };
+
+  const getPrice = async () => {
+    const contract = await getLithoContract(isConnected);
+    const price = await contract.methods.getSalePriceEth().call();
+    return price;
+  }
+
+  const randomMint = async () => {
+    const contract = await getLithoContract(isConnected);
+    const price = await getPrice();
+    console.log(price);
+    try {
+      await contract.methods.randomMint(address).send({ from: address, value: price });
+      notify(0, "Successfully minted!");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
+    } catch (err) {
+      console.log(err);
+      notify(2, "Something went wrong!");
+    }
+  }
+
+  useEffect(() => {
+    getNftData();
+  }, []);
 
   const items = nftData.map((data, index) => {
     return (
@@ -42,7 +78,7 @@ export default function Home({ setPage }) {
           <AliceCarousel mouseTracking items={items} responsive={responsive} />
         </div>
         <div className="btn-container">
-          <button className="mint-btn">MINT NOW</button>
+          <button className="mint-btn" onClick={randomMint}>MINT NOW</button>
         </div>
       </div>
     </div>

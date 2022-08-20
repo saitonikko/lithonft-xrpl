@@ -3,10 +3,10 @@ import contracts from "../contracts/contracts.json";
 
 const web3 = new Web3(window.ethereum);
 
-export const getDvdContract = async (isConnected) => {
+export const getLithoContract = async (isConnected) => {
     if(!isConnected) return;
-    const _dvdContract = await _getContract(contracts.Dvd);
-    return _dvdContract;
+    const _lithoContract = await _getContract(contracts.Litho);
+    return _lithoContract;
 }
 
 const _getContract = async ({address, abi}) => {
