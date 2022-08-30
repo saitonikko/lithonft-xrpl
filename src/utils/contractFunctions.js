@@ -5,8 +5,16 @@ const web3 = new Web3(window.ethereum);
 
 export const getLithoContract = async (isConnected) => {
     if(!isConnected) return;
-    const _lithoContract = await _getContract(contracts.Litho);
-    return _lithoContract;
+    const networkId = await web3.eth.net.getId();
+    console.log(networkId);
+    if(networkId == 56) {
+        const _lithoContract = await _getContract(contracts.Litho.mainnet);
+        return _lithoContract;
+    }
+    if(networkId == 97) {
+        const _lithoContract = await _getContract(contracts.Litho.testnet);
+        return _lithoContract;
+    }
 }
 
 const _getContract = async ({address, abi}) => {

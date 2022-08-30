@@ -36,6 +36,24 @@
         }
     }
 
+    .network {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+
+        .net-select {
+            display: flex;
+            align-items: center;
+
+            input {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+        }
+
+    }
+
     .content {
         display: flex;
         flex-direction: column;
@@ -58,7 +76,7 @@
                 overflow: hidden;
 
                 img {
-                    width: 22vw;
+                    width: 20vw;
                     border-radius: 20px;
                     cursor: pointer;
 
