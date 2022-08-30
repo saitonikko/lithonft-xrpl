@@ -53,6 +53,8 @@
                 border-radius: 4px;
                 padding: 0 10px;
                 background-image: linear-gradient(to right, #7a0fff 0%, #46bdf4 100%);
+                line-height: 30px;
+                font-family: 'Barlow', sans-serif;
                 font-weight: 700;
                 text-align: center;
 
@@ -61,6 +63,24 @@
                     transform: none;
                     transition: .2s all;
                 }
+            }
+        }
+
+        button {
+            border-radius: 4px;
+            padding: 5px 10px;
+            background-image: linear-gradient(to right, #7a0fff 0%, #46bdf4 100%);
+            font-size: 15px;
+            line-height: 30px;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+
+            &:hover {
+                box-shadow: 0 0 15px #ffffff;
+                transform: none;
+                transition: .2s all;
             }
         }
     }
