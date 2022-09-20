@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+// import { ConnectButton } from '@rainbow-me/rainbowkit';
 import jotart from "../assets/img/jotart.png";
+import wallet from "../assets/img/wallet.png";
+import {ConnectWallet} from "../components/connect-button"
 
-export default function Header({ page, network, account, setAccount }) {
+export default function Header({ page, network, setNetwork, account, setAccount }) {
 
 
 
@@ -30,9 +32,21 @@ export default function Header({ page, network, account, setAccount }) {
                 <Link to="/third"><span className={page === 2? "active": ""}>Third</span></Link>
             </div> */}
             <div className="right">
+                <div className="network">
+                    <div className="net-select">
+                        <input type="radio" checked={network === 0} onChange={() => setNetwork(0)}></input>
+                        <span>BSC</span>
+                    </div>
+                    <div className="net-select">
+                        <input type="radio" className="net-select" checked={network === 1} onChange={() => setNetwork(1)}></input>
+                        <span>XRPL</span>
+                    </div>
+                </div>
+                <img className="wallet" src={wallet} />
                 {
                     network === 0
-                        ? <ConnectButton label="CONNECT WALLET" accountStatus={{ smallScreen: 'none', largeScreen: 'address' }} />
+                        // ? <ConnectButton label="CONNECT WALLET" accountStatus={{ smallScreen: 'none', largeScreen: 'address' }} chainStatus="none" showBalance={false} />
+                        ? <ConnectWallet />
                         : account?.address
                             ? <button onClick={() => setAccount(null)}>{account.address.substring(0, 3) + "..." + account.address.substring(30, 34)}</button>
                             : <button onClick={signIn}>CONNECT WALLET</button>

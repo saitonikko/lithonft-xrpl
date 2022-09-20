@@ -42,9 +42,44 @@
         padding: 0 10px;
         border-radius: 10px;
         text-align: center;
+        display: flex;
+        align-items: center;
+        gap: max(20px, 3vw);
+
+        .network {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+
+            .net-select {
+                display: flex;
+                align-items: center;
+
+                input {
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 10px;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        .wallet {
+            height: 30px;
+            width: 30px;
+            cursor: pointer;
+
+            &:hover {
+                box-shadow: 0 0 15px #ffffff;
+                transition: .2s all;
+            }
+        }
 
         .iekbcc0 {
-            .ju367vc0  {
+            .ju367vc0 {
                 background: none;
                 border: none;
             }
