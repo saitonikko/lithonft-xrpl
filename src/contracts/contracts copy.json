@@ -630,7 +630,7 @@
             ]
         },
         "testnet": {
-            "address": "0xeC7bf6E1D8f55315a153E1b3B89090cB60833614",
+            "address": "0x7071fBfDF528FC51358F82eca08a3175463d38f3",
             "abi": [
                 {
                     "inputs": [],
@@ -885,13 +885,7 @@
                     "type": "function"
                 },
                 {
-                    "inputs": [
-                        {
-                            "internalType": "uint256",
-                            "name": "_price_usd",
-                            "type": "uint256"
-                        }
-                    ],
+                    "inputs": [],
                     "name": "getSalePriceEth",
                     "outputs": [
                         {
@@ -978,11 +972,6 @@
                             "internalType": "address payable",
                             "name": "to",
                             "type": "address"
-                        },
-                        {
-                            "internalType": "bool",
-                            "name": "isWhitelist",
-                            "type": "bool"
                         }
                     ],
                     "name": "randomMint",
@@ -1067,6 +1056,32 @@
                     "type": "function"
                 },
                 {
+                    "inputs": [],
+                    "name": "salePrice",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "salePrice_usd",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
                     "inputs": [
                         {
                             "internalType": "address payable",
@@ -1113,9 +1128,9 @@
                 {
                     "inputs": [
                         {
-                            "internalType": "uint256[]",
+                            "internalType": "uint256",
                             "name": "_salePrice_usd",
-                            "type": "uint256[]"
+                            "type": "uint256"
                         }
                     ],
                     "name": "setSalePrice",

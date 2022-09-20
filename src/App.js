@@ -152,7 +152,7 @@ const connectors = connectorsForWallets([
 ]);
 
 const wagmiClient = createClient({
-  autoConnect: false,
+  autoConnect: true,
   connectors,
   provider,
 });
@@ -165,7 +165,7 @@ function App() {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
-        <Layout page={page} network={network} account={account} setAccount={setAccount}>
+        <Layout page={page} network={network} setNetwork={setNetwork} account={account} setAccount={setAccount}>
           <Routes>
             <Route index element={<Home setPage={setPage} network={network} setNetwork={setNetwork} account={account} />} />
           </Routes>
